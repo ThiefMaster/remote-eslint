@@ -116,6 +116,7 @@ app.use(function(req, res) {
 
 // eslint-disable-next-line no-unused-vars
 app.use(function(err, req, res, next) {
+    console.error(err.stack);
     res.status(err.status || 500);
     res.send({error: err.message});
 });
