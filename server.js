@@ -1,9 +1,9 @@
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
-const CliEngine = require('eslint/lib/cli-engine');
 const config = require('./config');
 
 
@@ -33,8 +33,12 @@ function mapOptions(options) {
 }
 
 function makeEngine(options, cwd) {
+    cwd = mapPath(cwd);
+    // eslint-plugin-import uses the real cwd, regardless of what's the on the engine
+    process.chdir(cwd);
+    const CliEngine = require(path.join(cwd, 'node_modules/eslint/lib/cli-engine'));
     const engine = new CliEngine(options);
-    engine.options.cwd = mapPath(cwd);
+    engine.options.cwd = cwd;
     return engine;
 }
 
