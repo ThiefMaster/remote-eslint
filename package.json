@@ -1,0 +1,26 @@
+{
+  "name": "remote-eslint",
+  "version": "1.0.0",
+  "description": "Remote version of ESLint that can be used with JetBrains IDEs",
+  "main": "server.js",
+  "dependencies": {
+    "eslint": "^4.19.1",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "sync-request": "^6.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThiefMaster/remote-eslint.git"
+  },
+  "author": "Adrian Moennich",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/ThiefMaster/remote-eslint/issues"
+  },
+  "homepage": "https://github.com/ThiefMaster/remote-eslint#readme"
+}
