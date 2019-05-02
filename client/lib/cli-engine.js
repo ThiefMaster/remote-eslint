@@ -42,6 +42,10 @@ module.exports = class CliEngine {
         return JSON.stringify.bind(JSON);
     }
 
+    getConfigForFile() {
+        return {};
+    }
+
     static outputFixes(report) {
         return ESLintCliEngine.outputFixes(report);
     }
