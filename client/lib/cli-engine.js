@@ -4,6 +4,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = config.client.ignoreInvalidCert ? '0'
 
 const ESLintCliEngine = require('eslint/lib/cli-engine');
 const request = require('sync-request');
+const zlib = require('zlib');
 
 
 function req(method, path, payload) {
@@ -27,7 +28,13 @@ module.exports = class CliEngine {
     }
 
     executeOnText(text, filename, warnIgnored) {
-        const payload = {text, filename, warnIgnored, options: this.options, cwd: process.cwd()};
+        const payload = {
+            filename,
+            warnIgnored,
+            options: this.options,
+            cwd: process.cwd(),
+            gzText: zlib.deflateSync(text).toString('base64'),
+        };
         const response = req('POST', '/text', payload);
         return JSON.parse(response);
     }

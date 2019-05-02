@@ -4,6 +4,7 @@ const https = require('https');
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
+const zlib = require('zlib');
 const config = require('./config');
 
 
@@ -93,7 +94,8 @@ app.use((req, res, next) => {
 });
 
 app.post('/text', (req, res) => {
-    const {cwd, options, text, filename, warnIgnored} = req.body;
+    const {cwd, gzText, options, filename, warnIgnored} = req.body;
+    const text = zlib.inflateSync(Buffer.from(gzText, 'base64')).toString();
     mapOptions(options);
     const rv = executeOnText(options, cwd, text, filename, warnIgnored);
     res.send(rv);
