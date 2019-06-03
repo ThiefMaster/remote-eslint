@@ -16,7 +16,7 @@ function req(method, path, payload) {
     return request(method, config.client.url + path, opts).getBody();
 }
 
-module.exports = class CliEngine {
+class CLIEngine {
     constructor(options) {
         this.options = options;
     }
@@ -57,3 +57,5 @@ module.exports = class CliEngine {
         return ESLintCliEngine.outputFixes(report);
     }
 };
+
+module.exports = {CLIEngine: CLIEngine};
