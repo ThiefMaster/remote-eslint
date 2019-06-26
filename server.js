@@ -37,10 +37,9 @@ function makeEngine(options, cwd) {
     cwd = mapPath(cwd);
     // eslint-plugin-import uses the real cwd, regardless of what's the on the engine
     process.chdir(cwd);
-    const CliEngine = require(path.join(cwd, 'node_modules/eslint/lib/cli-engine'));
-    const engine = new CliEngine(options);
-    engine.options.cwd = cwd;
-    return engine;
+    options.cwd = cwd;
+    const {CLIEngine} = require(path.join(cwd, 'node_modules/eslint/lib/cli-engine'));
+    return new CLIEngine(options);
 }
 
 function executeOnText(options, cwd, text, filename, warnIgnored) {
