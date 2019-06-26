@@ -4,8 +4,8 @@
   "description": "Remote version of ESLint that can be used with JetBrains IDEs",
   "main": "server.js",
   "dependencies": {
-    "eslint": "^4.19.1",
-    "express": "^4.16.4",
+    "eslint": "^6.0.1",
+    "express": "^4.17.1",
     "morgan": "^1.9.1",
     "sync-request": "^6.1.0"
   },
